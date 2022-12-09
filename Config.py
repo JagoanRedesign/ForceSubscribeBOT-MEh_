@@ -19,10 +19,10 @@ class Messages():
       HELP_MSG = [
         ".",
 
-        "**Force Subscribe**\n__Force group members to join a specific channel before sending messages in the group.\nI will mute members if they not joined your channel and tell them to join the channel and unmute themself by pressing a button.__",
+        "**Force Subscribe**\n__Memaksa anggota grup untuk bergabung dengan channel tertentu sebelum mengirim pesan dalam grup.\nSaya akan membisukan anggota jika mereka tidak bergabung dengan channel Anda dan memberi tahu mereka untuk bergabung dengan channel dan menyalakan suara mereka sendiri dengan menekan tombol.__",
         
-        "**Setup**\n__First of all add me in the group as admin with ban users permission and in the channel as admin.\nNote: Only creator of the group can setup me and i will leave the chat if i am not an admin in the chat.__",
+        "**Setup**\n__Pertama-tama tambahkan saya di grup sebagai admin dengan izin blokir pengguna dan di channel sebagai admin.\nCatatan: Hanya pembuat grup yang dapat mengatur saya dan saya akan meninggalkan obrolan jika saya bukan admin dalam obrolan.__",
         
-        "**Commmands**\n__/ForceSubscribe - To get the current settings.\n/ForceSubscribe no/off/disable - To turn of ForceSubscribe.\n/ForceSubscribe {channel username or channel ID} - To turn on and setup the channel.\n/ForceSubscribe clear - To unmute all members who muted by me.__",
+        "**Commmands**\n__/ForceSubscribe Untuk mendapatkan pengaturan saat ini.\n/ForceSubscribe no / off / disable - Untuk mengaktifkan ForceSubscribe.\n/ForceSubscribe {nama pengguna channel atau ID channel} - Untuk mengaktifkan dan menyiapkan channel.\n/ForceSubscribe clear - Untuk menyalakan suara semua anggota yang dibisukan oleh bot.__",
       ]
-      START_MSG = "**Hey [{}](tg://user?id={})**\n__I can force members to join a specific channel before writing messages in the group.\nLearn more at /help__"
+      START_MSG = "**Hey [{}](tg://user?id={})**\n__Saya dapat memaksa anggota untuk bergabung dengan channel tertentu sebelum mengirim pesan di grup.\nPelajari lebih lanjut di /help__"
