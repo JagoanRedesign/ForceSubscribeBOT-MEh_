@@ -25,15 +25,15 @@ def _onUnMuteRequest(client, cb):
             if cb.message.reply_to_message.from_user.id == user_id:
               cb.message.delete()
           except UserNotParticipant:
-            client.answer_callback_query(cb.id, text="❗ Join the mentioned 'channel' and press the 'UnMute Me' button again.", show_alert=True)
+            client.answer_callback_query(cb.id, text="❗ Bergabunglah dengan 'channel' yang disebutkan dan tekan tombol 'UnMute' lagi.", show_alert=True)
       else:
-        client.answer_callback_query(cb.id, text="❗ You are muted by admins for other reasons.", show_alert=True)
+        client.answer_callback_query(cb.id, text="❗ Anda dibisukan oleh admin karena alasan lain.", show_alert=True)
     else:
       if not client.get_chat_member(chat_id, (client.get_me()).id).status == 'administrator':
-        client.send_message(chat_id, f"❗ **{cb.from_user.mention} is trying to UnMute himself but i can't unmute him because i am not an admin in this chat add me as admin again.**\n__#Leaving this chat...__")
+        client.send_message(chat_id, f"❗ **{cb.from_user.mention} sedang mencoba untuk UnMute sendiri tetapi saya tidak dapat menyalakan suaranya karena saya bukan admin dalam obrolan ini tambahkan saya sebagai admin lagi.**\n__#Leaving this chat...__")
         client.leave_chat(chat_id)
       else:
-        client.answer_callback_query(cb.id, text="❗ Warning: Don't click the button if you can speak freely.", show_alert=True)
+        client.answer_callback_query(cb.id, text="❗ Peringatan: Jangan klik tombol jika Anda dapat berbicara dengan bebas.", show_alert=True)
 
 
 
@@ -54,7 +54,7 @@ def _check_member(client, message):
       except UserNotParticipant:
         try:
           sent_message = message.reply_text(
-              " {} , you are not subscribed to my channel yet. Please join using below button and press the UnMute Me button to unmute yourself.".format(message.from_user.mention, channel, channel),
+              " {} , Anda belum berlangganan saluran saya. Silakan bergabung menggunakan tombol di bawah ini dan tekan tombol UnMute Me untuk menyalakan suara Anda sendiri.".format(message.from_user.mention, channel, channel),
               disable_web_page_preview=True,
              reply_markup=InlineKeyboardMarkup(
             [
@@ -62,17 +62,17 @@ def _check_member(client, message):
                     InlineKeyboardButton("Subscribe My Channel", url=channel_url)
                 ],
                 [
-                    InlineKeyboardButton("UnMute Me", callback_data="onUnMuteRequest")
+                    InlineKeyboardButton("UnMute", callback_data="onUnMuteRequest")
                 ]
             ]
         )
           )
           client.restrict_chat_member(chat_id, user_id, ChatPermissions(can_send_messages=False))
         except ChatAdminRequired:
-          sent_message.edit("❗ **I am not an admin here.**\n__Make me admin with ban user permission and add me again.\n#Leaving this chat...__")
+          sent_message.edit("❗ **Saya bukan admin di sini.**\n__Jadikan saya admin dengan izin pengguna larangan dan tambahkan saya lagi.\n#Meninggalkan obrolan ini...__")
           client.leave_chat(chat_id)
       except ChatAdminRequired:
-        client.send_message(chat_id, text=f"❗ **I am not an admin in [channel]({channel_url})**\n__Make me admin in the channel and add me again.\n#Leaving this chat...__")
+        client.send_message(chat_id, text=f"❗ **Saya bukan admin di [channel]({channel_url})**\n__Jadikan saya admin di channel dan tambahkan saya lagi.\n#Meninggalkan obrolan ini...__")
         client.leave_chat(chat_id)
 
 
@@ -86,17 +86,17 @@ def config(client, message):
       input_str = input_str.replace("@", "")
       if input_str.lower() in ("off", "no", "disable"):
         sql.disapprove(chat_id)
-        message.reply_text("❌ **Force Subscribe is Disabled Successfully.**")
+        message.reply_text("❌ **Force Subscribe Berhasil Dinonaktifkan.**")
       elif input_str.lower() in ('clear'):
-        sent_message = message.reply_text('**Unmuting all members who are muted by me...**')
+        sent_message = message.reply_text('**Mengaktifkan semua anggota yang dibisukan oleh bot...**')
         try:
           for chat_member in client.get_chat_members(message.chat.id, filter="restricted"):
             if chat_member.restricted_by.id == (client.get_me()).id:
                 client.unban_chat_member(chat_id, chat_member.user.id)
                 time.sleep(1)
-          sent_message.edit('✅ **UnMuted all members who are muted by me.**')
+          sent_message.edit('✅ **Bunyikan semua anggota yang dibisukan oleh bot.**')
         except ChatAdminRequired:
-          sent_message.edit('❗ **I am not an admin in this chat.**\n__I can\'t unmute members because i am not an admin in this chat make me admin with ban user permission.__')
+          sent_message.edit('❗ **Saya bukan admin dalam obrolan ini.**\n__Saya tidak dapat membunyikan anggota karena saya bukan admin dalam obrolan ini menjadikan saya admin dengan izin pengguna yang dilarang.__')
       else:
         try:
           client.get_chat_member(input_str, "me")
@@ -105,11 +105,11 @@ def config(client, message):
               channel_url = client.export_chat_invite_link(int(input_str))
           else:
               channel_url = f"https://t.me/{input_str}"
-          message.reply_text(f"✅ **Force Subscribe is Enabled**\n__Force Subscribe is enabled, all the group members have to subscribe this [channel]({channel_url}) in order to send messages in this group.__", disable_web_page_preview=True)
+          message.reply_text(f"✅ **Force Subscribe Diaktifkan**\n__Force Subscribe diaktifkan, semua anggota grup harus berlangganan [channel]({channel_url}) untuk mengirim pesan dalam grup ini.__", disable_web_page_preview=True)
         except UserNotParticipant:
-          message.reply_text(f"❗ **Not an Admin in the Channel**\n__I am not an admin in the [channel]({channel_url}). Add me as a admin in order to enable ForceSubscribe.__", disable_web_page_preview=True)
+          message.reply_text(f"❗ **Bukan Admin di channel**\n__Saya bukan admin di [channel]({channel_url}). Tambahkan saya sebagai admin untuk mengaktifkan ForceSubscribe.__", disable_web_page_preview=True)
         except (UsernameNotOccupied, PeerIdInvalid):
-          message.reply_text(f"❗ **Invalid Channel Username/ID.**")
+          message.reply_text(f"❗ **Nama Channel/ID Saluran Tidak Valid.**")
         except Exception as err:
           message.reply_text(f"❗ **ERROR:** ```{err}```")
     else:
@@ -119,8 +119,8 @@ def config(client, message):
             channel_url = client.export_chat_invite_link(int(input_str))
         else:
             channel_url = f"https://t.me/{my_channel}"
-        message.reply_text(f"✅ **Force Subscribe is enabled in this chat.**\n__For this [Channel]({channel_url})__", disable_web_page_preview=True)
+        message.reply_text(f"✅ **Force Subscribe diaktifkan dalam obrolan ini.**\n__Untuk [Channel]({channel_url})__", disable_web_page_preview=True)
       else:
-        message.reply_text("❌ **Force Subscribe is disabled in this chat.**")
+        message.reply_text("❌ **Force Subscribe dinonaktifkan dalam obrolan ini.**")
   else:
-      message.reply_text("❗ **Group Creator Required**\n__You have to be the group creator to do that.__")
+      message.reply_text("❗ **Diperlukan Pembuat Grup**\n__Anda harus menjadi pembuat grup untuk melakukan itu.__")
