@@ -17,7 +17,7 @@ def _start(client, message):
             if user.status == "kicked":
                client.send_message(
                    chat_id=message.chat.id,
-                   text="Sorry, You are Banned to use me. Contact my [Support Group](https://t.me/BHZBot_Support).",
+                   text="Maaf, Anda Dilarang menggunakan saya. Hubungi [Support Bot] (https://t.me/Chat4Robot) saya.",
                    parse_mode="markdown",
                    disable_web_page_preview=True
                )
@@ -25,11 +25,11 @@ def _start(client, message):
         except UserNotParticipant:
             client.send_message(
                 chat_id=message.chat.id,
-                text="**Please Join My Updates Channel to use this Bot!**",
+                text="**Silakan Bergabung dengan support chanel untuk menggunakan Bot ini!**",
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
-                            InlineKeyboardButton("Join Updates Channel", url=f"https://t.me/{update_channel}")
+                            InlineKeyboardButton("Join Duta Bot 🇮🇩", url=f"https://t.me/{update_channel}")
                         ]
                     ]
                 ),
@@ -42,8 +42,8 @@ def _start(client, message):
 	        reply_markup=InlineKeyboardMarkup(
                     [
                         [
-                           InlineKeyboardButton("Join Updates Channel", url="https://t.me/BioHazard_Bots"),
-                           InlineKeyboardButton("Support Group", url="https://t.me/BHZBot_Support")
+                           InlineKeyboardButton("Join Duta Bot 🇮🇩", url="https://t.me/DutabotID"),
+                           InlineKeyboardButton("Support Group", url="https://t.me/arena4me")
                       ],
 
                   ]
@@ -56,10 +56,10 @@ def _start(client, message):
         text=tr.START_MSG.format(message.from_user.first_name, message.from_user.id),
 	reply_markup=InlineKeyboardMarkup(
             [
-                [
-                    InlineKeyboardButton("Join Updates Channel", url="https://t.me/BioHazard_Bots"),
-                    InlineKeyboardButton("Support Group", url="https://t.me/BHZBot_Support")
-                ],
+                 [
+                           InlineKeyboardButton("Join Duta Bot 🇮🇩", url="https://t.me/DutabotID"),
+                           InlineKeyboardButton("Support Group", url="https://t.me/arena4me")
+                      ],
             ]
         ),
         parse_mode="markdown",
@@ -74,14 +74,14 @@ def _source_code(client, message):
 	reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("Creator", url="https://t.me/Avrazel")
+                    InlineKeyboardButton("Creator", url="https://t.me/DutabotID")
                 ],
+               [
+                           InlineKeyboardButton("Join Duta Bot 🇮🇩", url="https://t.me/DutabotID"),
+                           InlineKeyboardButton("Support Group", url="https://t.me/arena4me")
+                      ],
                 [
-                    InlineKeyboardButton("Join Updates Channel", url="https://t.me/BioHazard_Bots"),
-                    InlineKeyboardButton("Support Group", url="https://t.me/BHZBot_Support")
-                ],
-                [
-                    InlineKeyboardButton("Creator", url="https://t.me/Avrazel")
+                    InlineKeyboardButton("Creator", url="https://t.me/DutabotID")
                 ]
             ]
         ),
@@ -98,7 +98,7 @@ def _help(client, message):
             if user.status == "kicked":
                client.send_message(
                    chat_id=message.chat.id,
-                   text="Sorry, You are Banned to use me. Contact my [Support Group](https://t.me/BHZBot_Support).",
+                   text="Maaf, Anda Dilarang menggunakan saya. Hubungi [Support Bot] (https://t.me/Chat4Robot) saya.",
                    parse_mode="markdown",
                    disable_web_page_preview=True
                )
@@ -106,11 +106,11 @@ def _help(client, message):
         except UserNotParticipant:
             client.send_message(
                 chat_id=message.chat.id,
-                text="**Please Join My Updates Channel to use this Bot!**",
+                text="**Silakan Bergabung dengan support chanel untuk menggunakan Bot ini!**",
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
-                            InlineKeyboardButton("Join Updates Channel", url=f"https://t.me/{update_channel}")
+                            InlineKeyboardButton("Join Duta Bot 🇮🇩", url=f"https://t.me/{update_channel}")
                         ]
                     ]
                 ),
@@ -120,7 +120,7 @@ def _help(client, message):
         except Exception:
             client.send_message(
                 chat_id=message.chat.id,
-                text="Hey use this command in my pm. \nFor more help ask in my [Support Group](https://t.me/BHZBot_Support).",
+                text="Hai gunakan perintah ini di chat \nUntuk bantuan lebih lanjut tanyakan di saya [Support Bot](https://t.me/Chat4Robot).",
                 parse_mode="markdown",
                 disable_web_page_preview=True)
             return
